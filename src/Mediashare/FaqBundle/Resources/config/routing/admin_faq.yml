@@ -1,0 +1,34 @@
+admin_faq:
+    path:     /
+    defaults: { _controller: "MediashareFaqBundle:faq:index" }
+
+admin_faq_show:
+    path:     /{id}/show
+    defaults: { _controller: "MediashareFaqBundle:faq:show" }
+
+admin_faq_new:
+    path:     /new
+    defaults: { _controller: "MediashareFaqBundle:faq:new" }
+
+admin_faq_create:
+    path:     /create
+    defaults: { _controller: "MediashareFaqBundle:faq:create" }
+    methods:  POST
+
+admin_faq_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MediashareFaqBundle:faq:edit" }
+
+admin_faq_update:
+    path:     /{id}/update
+    defaults: { _controller: "MediashareFaqBundle:faq:update" }
+    methods:  [POST, PUT]
+
+admin_faq_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MediashareFaqBundle:faq:delete" }
+    methods:  [POST, DELETE]
+
+admin_faq_sort:
+    path:     /{id}/sort
+    defaults: { _controller: "MediashareFaqBundle:Faq:sort" }

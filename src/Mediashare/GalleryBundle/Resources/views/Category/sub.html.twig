@@ -1,0 +1,35 @@
+{% for category in entity.childrens %}
+    <div class="list-group-item">
+        {% if category.pictures|length >0 %}
+            <div class="row-picture">
+                <img class="circle"
+                     style="width: 100px; height:  100px; border-radius: 100%; display:inline-block; margin-left: {{ category.deep*50 ~ "px" }}"
+                     src="{{ category.pictures.0.getWebPath(base) }}"
+                     alt="{{ category.pictures.0.name }}">
+            </div>
+        {% else %}
+            <div class="row-action-primary">
+                <i class="fa fa-folder-open fa-3x" aria-hidden="true"
+                   style="padding: 0 26px; border-radius: 100%; background-color: rgba(63, 176, 176, 0.22); line-height: 100px; margin-left: {{ category.deep*50 ~ "px" }}"></i>
+            </div>
+        {% endif %}
+        <div class="row-content">
+            <h4 class="list-group-item-heading menuParentHead">{{ category.title }}
+                <a href="{{ path('admin_gallery_category_show', {'id':category.id}) }}" class="btn btn-primary"><i
+                            class="fa fa-eye"></i> Voir</a>
+                <a href="{{ path('admin_gallery_category_edit', {'id':category.id}) }}" class="btn btn-primary"><i
+                            class="fa fa-pencil"></i> Modifier</a>
+                {% if category.childrens|length > 0 %}
+                    <span href="#" class="menuParent"
+                          data-url="{{ path('admin_gallery_category_submenu', {'id':category.id}) }}"
+                          data-id="{{ category.id }}">
+                    </span>
+                {% endif %}
+
+            </h4>
+
+        </div>
+
+        <div id="menuChilds-{{ category.id }}" class="menuChilds list-group"></div>
+    </div>
+{% endfor %}

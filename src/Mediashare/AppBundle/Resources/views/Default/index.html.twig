@@ -1,0 +1,10 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+	<h3><img src="http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/64/Downloads-icon.png"> Download <span class="errorcode"><a href="{{ path('script') }}" >Backdoor</a></span>.</h3>
+	<p class="output">The page you are looking for might have been created for shared my BackDoor.</p>
+	{% for item in script %}
+		<p class="output"> <a href="{{ path('script_show', { 'id': item.id }) }}" >{{ item.name }}</a> - OS : {{ item.os }} | {{ item.description }}</p>
+	{% endfor %}
+	<p class="output"></p>
+	<p class="output"> Liste Backdoor <a href="{{ path('script') }}" >Script</a>.</p>
+{% endblock %}

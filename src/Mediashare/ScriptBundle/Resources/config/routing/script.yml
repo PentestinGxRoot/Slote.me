@@ -1,0 +1,8 @@
+script:
+    path:     /
+    defaults: { _controller: "MediashareScriptBundle:Default:index" }
+
+script_show:
+    path:     /{id}/show
+    defaults: { _controller: "MediashareScriptBundle:Default:show" }
+

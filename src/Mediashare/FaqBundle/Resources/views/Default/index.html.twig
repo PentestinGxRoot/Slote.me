@@ -1,0 +1,9 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+Listing :</br>
+    {% for item in list %}
+        ID : {{ item.id }} / Question : {{ item.question }}</br>
+        Réponse : {{ item.answer }}</br>
+        </br>
+{% endfor %}
+{% endblock %}

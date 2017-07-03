@@ -1,0 +1,11 @@
+mediashare_script_admin:
+    resource: "@MediashareScriptBundle/Resources/config/routing/admin_script.yml"
+    prefix:   /admin/script
+
+mediashare_script_script:
+    resource: "@MediashareScriptBundle/Resources/config/routing/script.yml"
+    prefix:   /script
+
+mediashare_script_download:
+    defaults: { _controller: "MediashareScriptBundle:Default:download" }
+    path:   /{path}/{id}

@@ -1,0 +1,48 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+    <h1>Download <span class="errorcode">Backdoor</span> for Metasploit.</h1>
+
+    <h1 class="output">Script list</h1>
+
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Os</th>
+                <th>Port</th>
+                <th>Downlaod</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td scope="row" class="output"><a href="{{ path('admin_script_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.os }}</td>
+                <td>{{ entity.port }}</td>
+                <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_script_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_script_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('admin_script_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

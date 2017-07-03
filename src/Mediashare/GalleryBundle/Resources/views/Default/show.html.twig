@@ -1,0 +1,36 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block slider %}{% endblock %}
+{% block content %}
+    <div id="titre_page">
+        <p class="breadcrumb"><strong>Vous êtes ici :</strong> <a href="{{ path('mediashare_app_homepage') }}"
+                                                                  title="AMBTP Cloture Ain 01">AMBTP</a> &nbsp;&nbsp;&gt;&nbsp;&nbsp;
+            <a href="{{ path('gallery_categories', {'id': gallery.id, 'slug': gallery.category.slug }) }}"
+               title="{{ gallery.category.title }} Haute Savoie 74 73">{{ gallery.category.title }}</a> &nbsp;&nbsp;&gt;&nbsp;&nbsp; {{ gallery.name }}
+        </p>
+        <h3 title="Clôtures systèmes fermetures automatisées manuelles Rhône Alpes Auvergne">Clôtures et autres systèmes
+            de fermetures automatisées ou manuelles Rhône Alpes Auvergne</h3>
+        <hr class="clear"/>
+    </div>
+
+    <div id="galleryShow">
+        <div class="titre">
+            <h2 title="{{ gallery.name }}">{{ gallery.name }}</h2>
+        </div>
+        <div class="description">
+            {{ gallery.description|raw }}
+        </div>
+        <div id="gallery">
+            {% if gallery.pictures|length > 0 %}
+                {% for picture in gallery.pictures %}
+                    <img alt="{{ picture.name }}" src="{{ picture.getWebPath(base) }}"
+                         data-image="{{ picture.getWebPath(base) }}" data-description="{{ picture.name }}"/>
+                {% endfor %}
+            {% else %}
+                <img alt="{{ gallery.name }}" src="{{ asset('images/sansimage/sans-img1.jpg') }}"
+                     data-image="{{ asset('images/sansimage/sans-img1.jpg') }}" data-description="{{ gallery.name }}"/>
+            {% endif %}
+        </div>
+        <hr class="clear"/>
+        <a href="{{ path('gallery_categories', {'id': gallery.id, 'slug': gallery.category.slug }) }}" class="link">Retour aux réalisations</a>
+    </div>
+{% endblock %}

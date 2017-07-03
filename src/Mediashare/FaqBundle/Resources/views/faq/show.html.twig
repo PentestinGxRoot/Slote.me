@@ -1,0 +1,52 @@
+{% extends 'MediashareAdminBundle::base.html.twig' %}
+
+{% block content_right %}
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            F.A.Q
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-question-circle"></i> <a href="{{ path('admin_faq') }}">F.A.Q</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-eye"></i> Voir
+            </li>
+        </ol>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Question</div>
+            <div class="panel-body">
+                {{ entity.question }}
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Réponse</div>
+            <div class="panel-body">
+                {{ entity.answer|raw }}
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Position</div>
+            <div class="panel-body">
+                {{ entity.position }}
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">En ligne</div>
+            <div class="panel-body">
+                {% if entity.online %}Oui{% else %}Non{% endif %}
+            </div>
+        </div>
+
+
+        <a href="{{ path('admin_faq') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Retour à la
+            liste</a>
+        <a href="{{ path('admin_faq_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="fa fa-pencil"></i>
+            Modifier</a>
+        {{ form(delete_form) }}
+    </div>
+{% endblock %}
+

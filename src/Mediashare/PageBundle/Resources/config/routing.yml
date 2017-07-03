@@ -1,0 +1,7 @@
+mediashare_news_admin:
+    resource: "@MediasharePageBundle/Resources/config/routing/admin_page.yml"
+    prefix:   /admin/page
+
+mediashare_page_page:
+    resource: "@MediasharePageBundle/Resources/config/routing/page.yml"
+    prefix:   /page

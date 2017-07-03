@@ -1,0 +1,30 @@
+admin_page:
+    path:     /
+    defaults: { _controller: "MediasharePageBundle:Page:index" }
+
+admin_page_show:
+    path:     /{id}/show
+    defaults: { _controller: "MediasharePageBundle:Page:show" }
+
+admin_page_new:
+    path:     /new
+    defaults: { _controller: "MediasharePageBundle:Page:new" }
+
+admin_page_create:
+    path:     /create
+    defaults: { _controller: "MediasharePageBundle:Page:create" }
+    methods:  POST
+
+admin_page_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MediasharePageBundle:Page:edit" }
+
+admin_page_update:
+    path:     /{id}/update
+    defaults: { _controller: "MediasharePageBundle:Page:update" }
+    methods:  [POST, PUT]
+
+admin_page_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MediasharePageBundle:Page:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,27 @@
+mediashare_app_homepage:
+    path:     /
+    defaults: { _controller: MediashareAppBundle:Default:index }
+
+mediashare_info:
+    resource: "@MediashareAppBundle/Resources/config/routing/info.yml"
+    prefix:   /info
+
+mediashare_app_sitemap:
+    path:     /sitemap
+    defaults: { _controller: MediashareAppBundle:Default:sitemap }
+
+mediashare_app_sitemapXml:
+    path:     /sitemap.xml
+    defaults: { _controller: MediashareAppBundle:Default:sitemapXml }
+
+mediashare_app_contact:
+    path:     /contact
+    defaults: { _controller: MediashareAppBundle:Default:contact }
+
+mediashare_app_cookies:
+    path:     /cookies
+    defaults: { _controller: MediashareAppBundle:Default:cookies }
+
+mediashare_contact_admin:
+    resource: "@MediashareAppBundle/Resources/config/routing/admin_contact.yml"
+    prefix:   /admin/contact

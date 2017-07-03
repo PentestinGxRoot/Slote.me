@@ -1,0 +1,52 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+    <h3>Show <span class="errorcode">{{ entity.name }}</span> for Metasploit.</h3>
+    <a href="{{ path('script') }}">
+        Back to the list
+    </a>
+    <h3 class="errorcode">Script</h3>
+
+    <table class="record_properties table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td scope="row">{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ entity.thispath }}</td>
+            </tr>
+            <tr>
+                <th>Payload</th>
+                <td>{{ entity.payload }}</td>
+            </tr>
+            <tr>
+                <th>Os</th>
+                <td>{{ entity.os }}</td>
+            </tr>
+            <tr>
+                <th>Host</th>
+                <td>{{ entity.host }}</td>
+            </tr>
+            <tr>
+                <th>Port</th>
+                <td>{{ entity.port }}</td>
+            </tr>
+            <tr>
+                <th>Download</th>
+                <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

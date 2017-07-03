@@ -1,0 +1,120 @@
+{% extends 'MediashareAdminBundle::base.html.twig' %}
+
+{% block content_right %}
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Création d'un produit
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-cube"></i> <a href="{{ path('admin_product') }}">Produits</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-plus-circle"></i> Ajouter
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-12">
+        {{ form_start(form, {'attr': {'class':'form-horizontal' }}) }}
+        <fieldset>
+
+            <div class="form-group">
+                {{ form_label(form.title) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.title) }}
+                    {{ form_widget(form.title) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.reference) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.reference) }}
+                    {{ form_widget(form.reference) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.description) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.urlLink) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.urlLink) }}
+                    {{ form_widget(form.urlLink) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.price) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.price) }}
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-eur"></i></span>{{ form_widget(form.price) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.promotionPrice) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.promotionPrice) }}
+                    <div class="form-group input-group">
+                    <span class="input-group-addon"><i
+                                class="fa fa-eur"></i></span>{{ form_widget(form.promotionPrice) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.promotionStartDate) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.promotionStartDate) }}
+                    {{ form_widget(form.promotionStartDate) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.promotionEndDate) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.promotionEndDate) }}
+                    {{ form_widget(form.promotionEndDate) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.category) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.category) }}
+                    {{ form_widget(form.category) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.online) }}
+                <div class="col-lg-10">
+                    {{ form_errors(form.online) }}
+                    {{ form_widget(form.online) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">
+                    Déplacez vos fichiers ou cliquez dans la zone :
+                </label>
+
+                <div id="dropZoneFile" class="col-lg-10">
+                    <iframe src="{{ path('mediashare_admin_update') }}">
+                    </iframe>
+                </div>
+            </div>
+            <ul class="files"
+                data-prototype="{% filter escape %}{% include 'MediashareAdminBundle:Form:prototype.html.twig' with {'form': form.pictures.vars.prototype} %}{% endfilter %}">
+            </ul>
+        </fieldset>
+        {% do form.pictures.setRendered %}
+        {{ form_end(form) }}
+
+
+        <a href="{{ path('admin_product') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Retour à
+            la
+            liste</a>
+    </div>
+{% endblock %}

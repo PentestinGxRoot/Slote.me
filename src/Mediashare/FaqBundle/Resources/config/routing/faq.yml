@@ -1,0 +1,3 @@
+faq:
+    path:     /
+    defaults: { _controller: MediashareFaqBundle:Default:index }

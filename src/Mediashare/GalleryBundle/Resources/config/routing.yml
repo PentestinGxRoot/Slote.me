@@ -1,0 +1,16 @@
+mediashare_gallery_admin:
+    resource: "@MediashareGalleryBundle/Resources/config/routing/admin_gallery.yml"
+    prefix:   /admin/gallery
+
+mediashare_gallery:
+    resource: "@MediashareGalleryBundle/Resources/config/routing/gallery.yml"
+    prefix:   /gallery
+
+
+mediashare_gallery_cateogry_admin:
+    resource: "@MediashareGalleryBundle/Resources/config/routing/admin_category.yml"
+    prefix:   /admin/gallery/categories
+
+mediashare_gallery_categories:
+    resource: "@MediashareGalleryBundle/Resources/config/routing/categories.yml"
+    prefix:   /gallery/categories

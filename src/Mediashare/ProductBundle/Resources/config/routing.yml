@@ -1,0 +1,15 @@
+mediashare_product_category_admin:
+    resource: "@MediashareProductBundle/Resources/config/routing/admin_category.yml"
+    prefix:   /admin/category
+
+mediashare_product_product_admin:
+    resource: "@MediashareProductBundle/Resources/config/routing/admin_product.yml"
+    prefix:   /admin/product
+
+mediashare_product_product:
+    resource: "@MediashareProductBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
+mediashare_product_category:
+    resource: "@MediashareProductBundle/Resources/config/routing/categories.yml"
+    prefix: /category

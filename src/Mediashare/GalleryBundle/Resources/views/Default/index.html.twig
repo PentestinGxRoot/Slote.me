@@ -1,0 +1,36 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block slider %}{% endblock %}
+{% block content %}
+    <div id="titre_page">
+        <p class="breadcrumb"><strong>Vous êtes ici :</strong> <a href="{{ path('mediashare_app_homepage') }}"
+                                                                  title="AMBTP Cloture Ain 01">AMBTP</a> &nbsp;&nbsp;&gt;&nbsp;&nbsp; {{ category.title }}
+        </p>
+        <h3 title="Titre de la catégorie Lyon 69 Rhône">{{ category.title }} sur Lyon (69 - Rhône)</h3>
+        <hr class="clear"/>
+    </div>
+
+    <div id="gallery">
+        <p class="titre">Réalisations '{{ category.title }}'</p>
+        {% if galleries|length > 0 %}
+            {% for gallery in galleries %}
+                <div class="detail_gallery">
+                    <a href="{{ path('gallery_show', {'id': gallery.id, 'slug': gallery.slug }) }}"
+                       title="{{ gallery.name }}">{{ gallery.name|capitalize }}</a>
+
+                    {% if gallery.pictures|length > 0 %}
+                        {% set putForward = 0 %}
+                        {% for picture in gallery.pictures if picture.putForward and putForward == 0 %}
+                            <img src="{{ picture.getWebPath(base) }}" alt="{{ gallery.name }}"/>
+                            {% set putForward = 1 %}
+                        {% endfor %}
+                        {% if putForward == 0 %}
+                            <img src="{{ gallery.pictures.0.getWebPath(base) }}" alt="{{ gallery.name }}"/>
+                        {% endif %}
+                    {% else %}
+                        <img src="{{ asset('images/sansimage/sans-img1.jpg') }}" alt="{{ gallery.name }}"/>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

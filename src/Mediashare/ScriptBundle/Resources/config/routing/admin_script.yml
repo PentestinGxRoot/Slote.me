@@ -1,0 +1,30 @@
+admin_script:
+    path:     /
+    defaults: { _controller: "MediashareScriptBundle:Script:index" }
+
+admin_script_show:
+    path:     /{id}/show
+    defaults: { _controller: "MediashareScriptBundle:Script:show" }
+
+admin_script_new:
+    path:     /new
+    defaults: { _controller: "MediashareScriptBundle:Script:new" }
+
+admin_script_create:
+    path:     /create
+    defaults: { _controller: "MediashareScriptBundle:Script:create" }
+    methods:  POST
+
+admin_script_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MediashareScriptBundle:Script:edit" }
+
+admin_script_update:
+    path:     /{id}/update
+    defaults: { _controller: "MediashareScriptBundle:Script:update" }
+    methods:  [POST, PUT]
+
+admin_script_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MediashareScriptBundle:Script:delete" }
+    methods:  [POST, DELETE]

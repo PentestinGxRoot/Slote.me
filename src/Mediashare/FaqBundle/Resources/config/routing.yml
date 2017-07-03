@@ -1,0 +1,8 @@
+mediashare_faq_admin:
+    resource: "@MediashareFaqBundle/Resources/config/routing/admin_faq.yml"
+    prefix:   /admin/faq
+
+mediashare_faq:
+    resource: "@MediashareFaqBundle/Resources/config/routing/faq.yml"
+    prefix:   /faq
+

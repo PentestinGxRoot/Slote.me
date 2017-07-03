@@ -1,0 +1,37 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+
+    <h3 class="output">Script list</h3>
+
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Os</th>
+                <th>Port</th>
+                <th>Downlaod</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td scope="row" class="output"><a href="{{ path('script_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.os }}</td>
+                <td>{{ entity.port }}</td>
+                <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('script_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

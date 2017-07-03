@@ -1,0 +1,35 @@
+admin_gallery_category:
+    path:     /
+    defaults: { _controller: "MediashareGalleryBundle:Category:index" }
+
+admin_gallery_category_show:
+    path:     /{id}/show
+    defaults: { _controller: "MediashareGalleryBundle:Category:show" }
+
+admin_gallery_category_new:
+    path:     /new
+    defaults: { _controller: "MediashareGalleryBundle:Category:new" }
+
+admin_gallery_category_create:
+    path:     /create
+    defaults: { _controller: "MediashareGalleryBundle:Category:create" }
+    methods:  POST
+
+admin_gallery_category_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MediashareGalleryBundle:Category:edit" }
+
+admin_gallery_category_update:
+    path:     /{id}/update
+    defaults: { _controller: "MediashareGalleryBundle:Category:update" }
+    methods:  [POST, PUT]
+
+admin_gallery_category_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MediashareGalleryBundle:Category:delete" }
+    methods:  [POST, DELETE]
+
+admin_gallery_category_submenu:
+    path:     /submenu/{id}
+    defaults: { _controller: "MediashareGalleryBundle:Category:subMenu" }
+    methods:  [GET]

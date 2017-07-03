@@ -1,0 +1,16 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+    <h1>Create <span class="errorcode">Backdoor</span> for Metasploit.</h1>
+
+    <h1 class="errorcode">Script creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_script') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+
+    <h3> {{ page.title }} </h3>
+
+    <div class="page_content">
+        {{ page.content|raw }}
+    </div>
+
+{% endblock %}

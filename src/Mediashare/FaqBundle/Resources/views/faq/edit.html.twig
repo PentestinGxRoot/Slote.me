@@ -1,0 +1,48 @@
+{% extends 'MediashareAdminBundle::base.html.twig' %}
+
+{% block content_right %}
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Modifier une F.A.Q
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-question-circle"></i> <a href="{{ path('admin_faq') }}">F.A.Q</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-pencil-square"></i> Modification
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-12">
+        {{ form_start(edit_form, {'attr': {'class':'form-horizontal' }}) }}
+        <fieldset>
+            <div class="form-group">
+                {{ form_label(edit_form.question) }}
+                <div class="col-lg-10">
+                    {{ form_errors(edit_form.question) }}
+                    {{ form_widget(edit_form.question) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(edit_form.answer) }}
+                <div class="col-lg-10">
+                    {{ form_errors(edit_form.answer) }}
+                    {{ form_widget(edit_form.answer) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(edit_form.online) }}
+                <div class="col-lg-10">
+                    {{ form_errors(edit_form.online) }}
+                    {{ form_widget(edit_form.online) }}
+                </div>
+            </div>
+        </fieldset>
+        {{ form_end(edit_form) }}
+
+        <a href="{{ path('admin_faq') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Retour à la
+            liste</a>
+        {{ form(delete_form) }}
+    </div>
+{% endblock %}
