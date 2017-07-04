@@ -1,4 +1,4 @@
-Mediashare
+Slote.me
 ========
 
-A Symfony project created on July 8, 2015, 1:42 pm.
+Site créer et développé sous Symfony 2.6, [Slote.me](http://Slote.me) est un site de partage de Backdoor/Malware et d'Helper (aide au Hack).
