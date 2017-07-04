@@ -11,9 +11,12 @@ html,
 body {
   width: 100%;
   height: 100%;
-  background: url("/images/skulls_Anonymous_suit_tie_skeletons_Alex_Cherry_1920x1200.jpg") repeat fixed;
+  background: url("http://wallpapercave.com/wp/mujHyfm.jpg") center fixed;
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
+}
+#header{
+  color: #1bc51e;
 }
 .login {
   position: relative;

@@ -1,61 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Slote.me</title>
-        {#<meta name="description" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('description') }}"/>#}
-        {#<meta name="keywords" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('keywords') }}"/>#}
-        <!--<meta property="og:url" content="http://www.monnomdedomainefinal.fr" />
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Slote.me</title>
+    {#<meta name="description" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('description') }}"/>#}
+    {#<meta name="keywords" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('keywords') }}"/>#}
+    <!--<meta property="og:url" content="http://www.monnomdedomainefinal.fr" />
         <meta property="og:site_name" content="Nom du site à remplir" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="titre à remplir" />
         <meta property="og:description" content="description à remplir" />
         <meta property="og:image" content="http://www.monnomdedomainefinal.fr/images/og-image.jpg" />-->
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" media="all"/>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="all"/>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-        <!--[if IE]>
-        <style media="screen">
-        .myhr{margin:-0.45em 0}
-        </style>
-        <meta http-equiv="imagetoolbar" content="no" />
-        <![endif]-->
-    </head>
-    <body>
-        {% block body %}
-            <header id="header">
-            </header>
-            <div id="slider">
-                {% block slider %}
-                    {% include 'MediashareAppBundle::_slider.html.twig' %}
-                {% endblock %}
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" media="all"/>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="all"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <!--[if IE]> <style media="screen"> .myhr{margin:-0.45em 0} </style> <meta http-equiv="imagetoolbar" content="no" /> <![endif]-->
+  </head>
+  <body>
+    {% block body %}
+      <div class="overlay"></div>
+      <div class="terminal">
+        <header id="header">
+          <div class="header_title">
+            <h1><img src="http://icons.iconarchive.com/icons/reclusekc/kulo/128/Skull-1-icon.png">
+              <a href="{{ path('mediashare_app_homepage')}}">
+                <span class="errorcode">Slote.me</span>
+              </a>
+              <span style="font-size:20px;">Coming soon in your
+                <span class="errorcode">Computer</span>.</span>
+            </h1>
+
+            <div>
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                |
+                <a href="{{ path('mediashare_app_homepage')}}">Home</a>
+                |
+                <a href="http://irc.slote.me:9000">Chat IRC</a>
+                |
+                <a href="{{ path('fos_user_security_logout') }}">
+                  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+
+              {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+              {% endif %}
             </div>
-            <section id="content">
-                <noscript>
-                <dl id="jserror">
-                    <dt>Attention</dt>
-                    <dd>Si vous souhaitez utiliser pleinement toutes les capacités de ce site Internet vous devez activer javascript dans votre
-                    navigateur</dd>
-                </dl>
-                </noscript>
-                <div class="overlay"></div>
-                <div class="terminal">
-                    <h1><img src="http://icons.iconarchive.com/icons/reclusekc/kulo/128/Skull-1-icon.png"><a href="{{ path('mediashare_app_homepage')}}"><span class="errorcode">Slote.me</span></a></h1>
-                    <h2>Coming soon in your <span class="errorcode">Computer</span>.</h2>
-                    {% block content %}
-                    {% endblock %}
+
+            {% for type, messages in app.session.flashbag.all() %}
+              {% for message in messages %}
+                <div class="flash-{{ type }}">
+                  {{ message }}
                 </div>
-            </section>
-        {% endblock %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+          <hr class="clear">
+        </header>
+        <section id="content">
+          <noscript>
+            <dl id="jserror">
+              <dt>Attention</dt>
+              <dd>Si vous souhaitez utiliser pleinement toutes les capacités de ce site Internet vous devez activer javascript dans votre navigateur</dd>
+            </dl>
+          </noscript>
+          {% block content %}{% endblock %}
+        </section>
         {% block footer %}
-            {{ render(controller('MediashareAppBundle:Default:footer')) }}
+          {{ render(controller('MediashareAppBundle:Default:footer')) }}
         {% endblock %}
-        <div id="scrollToTop"><a href="#">&#9650;</a></div>
-        {% block javascripts %}
-        {% endblock %}
-    </body>
+        <div id="scrollToTop">
+          <a href="#">&#9650;</a>
+        </div>
+        {% block javascripts %}{% endblock %}
+      </div>
+    {% endblock %}
+  </body>
 </html>

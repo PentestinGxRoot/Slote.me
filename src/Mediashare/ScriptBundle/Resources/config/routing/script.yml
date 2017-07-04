@@ -2,7 +2,10 @@ script:
     path:     /
     defaults: { _controller: "MediashareScriptBundle:Default:index" }
 
+script_list:
+    path:     /{type}/list
+    defaults: { _controller: "MediashareScriptBundle:Default:list" }
+
 script_show:
     path:     /{id}/show
     defaults: { _controller: "MediashareScriptBundle:Default:show" }
-

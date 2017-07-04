@@ -1,48 +1,65 @@
 {% extends 'MediashareAppBundle::base.html.twig' %}
 {% block content %}
-    <h1>Download <span class="errorcode">Backdoor</span> for Metasploit.</h1>
-
-    <h1 class="output">Script list</h1>
+  <div class="container">
+    {% block menu %}
+      {% include 'MediashareAppBundle::_menu.html.twig' %}
+    {% endblock %}
 
     <table class="records_list table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Os</th>
-                <th>Port</th>
-                <th>Downlaod</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Os</th>
+          <th>Port</th>
+          <th>Downlaod</th>
+          {% if is_granted("ROLE_ADMIN") %}
+            <th>Actions</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
         {% for entity in entities %}
-            <tr>
-                <td scope="row" class="output"><a href="{{ path('admin_script_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-                <td>{{ entity.description }}</td>
-                <td>{{ entity.os }}</td>
-                <td>{{ entity.port }}</td>
-                <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
-                <td>
+          <tr>
+            <td scope="row" class="output">
+              <a href="{{ path('admin_script_show', { 'id': entity.id }) }}">{{ entity.name }}</a>
+            </td>
+            <td>
+              {% if entity.type == 0 %}Backdoor{% elseif entity.type == 1 %}Malware{% elseif entity.type == 2 %}Rat{% elseif entity.type == 3 %}Helper{% elseif entity.type == 4 %}Autres{% endif %}
+            </td>
+            <td>{{ entity.description }}</td>
+            <td>
+              {% if entity.os == 0 %}Windows{% elseif entity.os == 1 %}Mac{% elseif entity.os == 2 %}Linux{% elseif entity.os == 3 %}Cross-Platform{% endif %}
+            </td>
+            <td>{{ entity.port }}</td>
+            <td>
+              <a href="{{ asset( entity.thispath )}}" download>Download</a>
+            </td>
+            {% if is_granted("ROLE_ADMIN") %}
+              <td>
                 <ul>
-                    <li>
-                        <a href="{{ path('admin_script_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_script_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
+                  <li>
+                    <a href="{{ path('admin_script_show', { 'id': entity.id }) }}">show</a>
+                  </li>
+                  <li>
+                    <a href="{{ path('admin_script_edit', { 'id': entity.id }) }}">edit</a>
+                  </li>
                 </ul>
-                </td>
-            </tr>
+              </td>
+            {% endif %}
+          </tr>
         {% endfor %}
-        </tbody>
+      </tbody>
     </table>
-
-        <ul>
+    {% if is_granted("ROLE_ADMIN") %}
+      <ul>
         <li>
-            <a href="{{ path('admin_script_new') }}">
-                Create a new entry
-            </a>
+          <a href="{{ path('admin_script_new') }}">
+            Create a new entry
+          </a>
         </li>
-    </ul>
-    {% endblock %}
+      </ul>
+    {% endif %}
+  </div>
+{% endblock %}

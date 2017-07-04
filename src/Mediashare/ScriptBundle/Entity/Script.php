@@ -3,6 +3,10 @@
 namespace Mediashare\ScriptBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Mediashare\AdminBundle\Entity\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Script
@@ -36,11 +40,23 @@ class Script
     private $description;
 
     /**
+     *
+     * @ORM\ManyToMany(targetEntity="Mediashare\AdminBundle\Entity\File", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="script_file",
+     *      joinColumns={@ORM\JoinColumn(name="script_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="file_id", referencedColumnName="id", onDelete="CASCADE")}
+     *      )
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    public $pictures;
+
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="thispath", type="string", length=255)
+     * @ORM\Column(name="thispath", type="string", length=255, nullable=true)
      */
-    public $thispath;
+    private $thispath;
 
     /**
      * @var string
@@ -48,6 +64,13 @@ class Script
      * @ORM\Column(name="payload", type="string", length=255, nullable=true)
      */
     private $payload;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
 
     /**
      * @var string
@@ -127,28 +150,6 @@ class Script
         return $this->description;
     }
 
-    /**
-     * Set thispath
-     *
-     * @param string $thispath
-     * @return Script
-     */
-    public function setThispath($thispath)
-    {
-        $this->thispath = $thispath;
-
-        return $this;
-    }
-
-    /**
-     * Get thispath
-     *
-     * @return string
-     */
-    public function getThispath()
-    {
-        return $this->thispath;
-    }
 
     /**
      * Set payload
@@ -241,4 +242,92 @@ class Script
     {
         return $this->port;
     }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Script
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Mediashare\AdminBundle\Entity\File $pictures
+     * @return Script
+     */
+    public function addThispath(\Mediashare\AdminBundle\Entity\File $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Mediashare\AdminBundle\Entity\File $pictures
+     */
+    public function removeThispath(\Mediashare\AdminBundle\Entity\File $pictures)
+    {
+        $this->thispath->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Set thispath
+     *
+     * @param string $thispath
+     * @return Script
+     */
+    public function setThispath($thispath)
+    {
+        $this->thispath = $thispath;
+
+        return $this;
+    }
+
+    /**
+     * Get thispath
+     *
+     * @return string
+     */
+    public function getThispath()
+    {
+        return $this->thispath;
+    }
+
 }

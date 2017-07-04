@@ -51,6 +51,7 @@ section,article,header,footer,nav,aside,hgroup {
 }
 table,td,blockquote,code,pre,textarea,input,video {
   max-width: 100%;
+  margin: 0px auto;
 }
 p, dd, ul{
 	word-wrap: break-word;
@@ -235,7 +236,15 @@ hr{
 }
 
 /*----------------------------------------------------< HEADER >---------------------------------------------------*/
+.header_title{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
 /*----------------------------------------------------< CONTENT >---------------------------------------------------*/
+#content{
+  margin: 5% auto;
+}
 /*----------------------------------------------------< FOOTER >---------------------------------------------------*/
 /*----------------------------------------------------< CONTACT >---------------------------------------------------*/
 /*----------------------------------------------------< COOKIES >---------------------------------------------------*/
@@ -357,7 +366,7 @@ body {
   box-sizing: inherit;
   position: absolute;
   height: 100%;
-  width: 1000px;
+  width: 100%;
   max-width: 100%;
   padding: 4rem;
   text-transform: uppercase;
@@ -378,7 +387,7 @@ body {
 }
 
 .input::before {
-  content: "$ ";
+  /*content: "$ ";*/
 }
 
 a {

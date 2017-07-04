@@ -1,16 +1,21 @@
 {% extends 'MediashareAppBundle::base.html.twig' %}
 {% block content %}
-    <h1>Create <span class="errorcode">Backdoor</span> for Metasploit.</h1>
+  <div class="container">
+    {% block menu %}
+            {% include 'MediashareAppBundle::_menu.html.twig' %}
+    {% endblock %}
+    <h3>New <span class="errorcode">Post</span> for Slote.me</h3>
 
-    <h1 class="errorcode">Script creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
+    <h4>Ne posté pas n'importe quoi <span class="errorcode">[Thx]</span>.</h4>
+    <ul class="record_actions">
+      <li>
         <a href="{{ path('admin_script') }}">
             Back to the list
         </a>
-    </li>
-</ul>
+      </li>
+    </ul>
+    <div class="raw">
+      {{ form(form) }}
+    </div>
+  </div>
 {% endblock %}

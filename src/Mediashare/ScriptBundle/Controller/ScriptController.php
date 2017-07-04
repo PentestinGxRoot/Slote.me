@@ -10,6 +10,7 @@ use Mediashare\ScriptBundle\Form\ScriptType;
 
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Finder\Finder;
 
 
 /**
@@ -27,9 +28,9 @@ class ScriptController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MediashareScriptBundle:Script')->findAll();
+        $entities = $em->getRepository('MediashareScriptBundle:Script')->findBy(array(), array('id' => 'DESC'));
 
-        return $this->render('MediashareScriptBundle:Script:index.html.twig', array(
+        return $this->render('MediashareScriptBundle:Default:index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -49,7 +50,7 @@ class ScriptController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('script_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_script_show', array('id' => $entity->getId())));
         }
 
         return $this->render('MediashareScriptBundle:Script:new.html.twig', array(
@@ -68,7 +69,7 @@ class ScriptController extends Controller
     private function createCreateForm(Script $entity)
     {
         $form = $this->createForm(new ScriptType(), $entity, array(
-            'action' => $this->generateUrl('script_create'),
+            'action' => $this->generateUrl('admin_script_create'),
             'method' => 'POST',
         ));
 
@@ -108,9 +109,27 @@ class ScriptController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        $name_file = $entity->getThispath();
+        $finder = new Finder();
+        $finder->files()->in("script/");
+        $finder->files()->name($name_file);
+
+        foreach ($finder as $file) {
+            // Dump the absolute path
+            // var_dump($file->getRealPath());
+
+            // Dump the relative path to the file, omitting the filename
+            // var_dump($file->getRelativePath());
+
+            // Dump the relative path to the file
+            // var_dump($file->getRelativePathname());
+            $contents = $file->getContents();
+        }
+
         return $this->render('MediashareScriptBundle:Script:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'contents' => $contents
         ));
     }
 
@@ -207,7 +226,7 @@ class ScriptController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('script'));
+        return $this->redirect($this->generateUrl('admin_script'));
     }
 
     /**

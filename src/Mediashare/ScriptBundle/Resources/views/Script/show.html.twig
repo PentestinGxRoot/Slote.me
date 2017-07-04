@@ -1,58 +1,81 @@
 {% extends 'MediashareAppBundle::base.html.twig' %}
 {% block content %}
-    <h1>Show <span class="errorcode">{{ entity.name }}</span> for Metasploit.</h1>
-    <a href="{{ path('admin_script') }}">
-        Back to the list
+<div class="container">
+{% block menu %}
+        {% include 'MediashareAppBundle::_menu.html.twig' %}
+{% endblock %}
+  <a href="{{ path('script') }}">
+    Back to the list
+  </a>
+  <h3 class="errorcode">{{ entity.name }} <span>{{ form(delete_form) }}</span></h3>
+
+  <table class="record_properties table">
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td scope="row" class="errorcode">{{ entity.name }}</td>
+        <th>Id</th>
+        <td class="errorcode">{{ entity.id }}</td>
+      </tr>
+      <tr>
+        <th>Type</th>
+        <td class="errorcode">
+          {% if entity.type == 0 %}Backdoor{% elseif entity.type == 1 %}Malware{% elseif entity.type == 2 %}Rat{% elseif entity.type == 3 %}Helper{% elseif entity.type == 4 %}Autres{% endif %}
+        </td>
+        <th>Os</th>
+        <td class="errorcode">
+          {% if entity.os == 0 %}Windows{% elseif entity.os == 1 %}Mac{% elseif entity.os == 2 %}Linux{% elseif entity.os == 3 %}Cross-Platform{% endif %}
+        </td>
+      </tr>
+
+      {% if entity.description | length > 0 %}
+        <tr>
+          <th>Description</th>
+          <td class="errorcode">{{ entity.description|raw }}</td>
+          <th></th>
+          <td></td>
+        </tr>
+      {% endif %}
+      {% if entity.payload | length > 0 %}
+        <tr>
+          <th>Payload</th>
+          <td class="errorcode">{{ entity.payload }}</td>
+        </tr>
+      {% endif %}
+
+      {% if is_granted("ROLE_ADMIN") %}
+        {% if entity.host | length > 0 %}
+          <tr>
+            <th>Host</th>
+            <td class="errorcode">{{ entity.host }}</td>
+          </tr>
+        {% endif %}
+        {% if entity.port | length > 0 %}
+          <tr>
+            <th>Port</th>
+            <td class="errorcode">{{ entity.port }}</td>
+          </tr>
+        {% endif %}
+      {% endif %}
+      <tr>
+        <th>Link</th>
+        <td>
+          <a href="{{ asset( entity.thispath )}}" download>Download</a>
+        </td>
+        <th>Path</th>
+        <td class="errorcode">{{ entity.thispath }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% if is_granted("ROLE_ADMIN") %}
+    <a href="{{ path('admin_script_edit', { 'id': entity.id }) }}">
+      Edit
     </a>
-    <h1 class="errorcode">Script</h1>
+  {% endif %}
 
-    <table class="record_properties table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td scope="row">{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-            <tr>
-                <th>Path</th>
-                <td>{{ entity.thispath }}</td>
-            </tr>
-            <tr>
-                <th>Payload</th>
-                <td>{{ entity.payload }}</td>
-            </tr>
-            <tr>
-                <th>Os</th>
-                <td>{{ entity.os }}</td>
-            </tr>
-            <tr>
-                <th>Host</th>
-                <td>{{ entity.host }}</td>
-            </tr>
-            <tr>
-                <th>Port</th>
-                <td>{{ entity.port }}</td>
-            </tr>
-            <tr>
-                <th>Download</th>
-                <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
-            </tr>
-        </tbody>
-    </table>
+  <h3><span class="errorcode">Code</span> File</h3>
+  <hr class="separateur">
+  <p>{{ contents }}</p>
 
-
-        <div class="content">
-          <a href="{{ path('admin_script_edit', { 'id': entity.id }) }}">
-              Edit
-          </a>
-          {{ form(delete_form) }}
-        </div>
-
+</div>
 {% endblock %}

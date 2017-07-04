@@ -22,7 +22,7 @@
     <form class="login" action="{{ path("fos_user_security_check") }}" method="post">
       
       <fieldset>
-        
+
         <legend class="legend">Login</legend>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
         <div class="input">
@@ -35,14 +35,14 @@
           <span><i class="fa fa-lock"></i></span>
         </div>
         <button type="submit" class="submit" name="_submit"  value="{{ 'security.login.submit'|trans }}"><i class="fa fa-long-arrow-right"></i></button>
-        
+
       </fieldset>
-      
+
       <div class="feedback">
         login successful <br />
         redirecting...
       </div>
-      
+
     </form>
   </body>
 </html>
