@@ -33,7 +33,7 @@
               <td>{{ entity.description|slice(0,55) }}...</td>
               <td>{% if entity.os == 0 %}Windows{% elseif entity.os == 1 %}Mac{% elseif entity.os == 2 %}Linux{% elseif entity.os == 3 %}Cross-Platform{% endif %}</td>
               <td>{{ entity.port }}</td>
-              <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
+              <td><a href="../script/{{ entity.thispath }}" download>Download</a></td>
               {% if is_granted("ROLE_ADMIN") %}
                 <td>
                   <ul>

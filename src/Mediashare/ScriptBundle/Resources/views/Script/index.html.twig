@@ -34,7 +34,7 @@
             </td>
             <td>{{ entity.port }}</td>
             <td>
-              <a href="{{ asset( entity.thispath )}}" download>Download</a>
+              <a href="../script/{{ entity.thispath }}" download>Download</a>
             </td>
             {% if is_granted("ROLE_ADMIN") %}
               <td>
