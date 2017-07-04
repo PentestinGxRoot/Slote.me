@@ -1,0 +1,64 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+<div class="container">
+    {% block menu %}
+            {% include 'MediashareAppBundle::_menu.html.twig' %}
+    {% endblock %}
+  {% if is_granted("ROLE_ADMIN") %}
+    <ul>
+      <li>
+          <a href="{{ path('admin_script_new') }}">
+              Create a new entry
+          </a>
+      </li>
+    </ul>
+  {% endif %}
+  <table class="records_list table">
+      <thead>
+          <tr>
+              <th width="25%">Name</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Os</th>
+              <th>Port</th>
+              <th>Downlaod</th>
+              {% if is_granted("ROLE_ADMIN") %}<th>Actions</th>{% endif %}
+          </tr>
+      </thead>
+      <tbody>
+      {% for entity in entities %}
+          <tr>
+              <td scope="row" class="output"><a href="{{ path('script_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+              <td>{% if entity.type == 0 %}Backdoor{% elseif entity.type == 1 %}Malware{% elseif entity.type == 2 %}Rat{% elseif entity.type == 3 %}Helper{% elseif entity.type == 4 %}Autres{% endif %}</td>
+              <td>{{ entity.description|slice(0,55) }}...</td>
+              <td>{% if entity.os == 0 %}Windows{% elseif entity.os == 1 %}Mac{% elseif entity.os == 2 %}Linux{% elseif entity.os == 3 %}Cross-Platform{% endif %}</td>
+              <td>{{ entity.port }}</td>
+              <td><a href="{{ asset( entity.thispath )}}" download>Download</a></td>
+              {% if is_granted("ROLE_ADMIN") %}
+                <td>
+                  <ul>
+                      <li>
+                          <a href="{{ path('admin_script_show', { 'id': entity.id }) }}">show</a>
+                      </li>
+                      <li>
+                          <a href="{{ path('admin_script_edit', { 'id': entity.id }) }}">edit</a>
+                      </li>
+                  </ul>
+                </td>
+            {% endif %}
+          </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+
+    {% if is_granted("ROLE_ADMIN") %}
+      <ul>
+        <li>
+            <a href="{{ path('admin_script_new') }}">
+                Create a new entry
+            </a>
+        </li>
+      </ul>
+    {% endif %}
+</div>
+{% endblock %}

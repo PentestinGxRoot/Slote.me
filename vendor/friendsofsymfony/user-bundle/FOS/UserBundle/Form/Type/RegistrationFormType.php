@@ -23,7 +23,7 @@ class RegistrationFormType extends AbstractType
      * @param string $class The User class name
      */
     public function __construct($class)
-    {
+    { 
         $this->class = $class;
     }
 

@@ -16,33 +16,76 @@
     <link rel="stylesheet" href="{{ asset('css/login.css')}}" type="text/css" media="all"/>
   </head>
   <body>
-    {% if error %}
-      <div class="alert alert-danger">{{ error|trim('.')|trans({}, 'FOSUserBundle') }}</div>
-    {% endif %}
-    <form class="login" action="{{ path("fos_user_security_check") }}" method="post">
-      
-      <fieldset>
+    <div class="overlay"></div>
+    <div class="terminal">
+    <header id="header">
+      <div class="header_title">
+        <h1><img src="http://icons.iconarchive.com/icons/reclusekc/kulo/128/Skull-1-icon.png">
+          <a href="{{ path('mediashare_app_homepage')}}">
+            <span class="errorcode">Slote.me</span>
+          </a>
+          <span style="font-size:20px;">Coming soon in your
+            <span class="errorcode">Computer</span>.</span>
+        </h1>
 
-        <legend class="legend">Login</legend>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-        <div class="input">
-          <input type="text" placeholder="User" id="username" name="_username" class="form-control" value="{{ last_username }}"
-          required/>
-          <span><i class="fa fa-user"></i></span>
+        <div>
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+            |
+            <a href="{{ path('mediashare_app_homepage')}}">Home</a>
+            |
+            <a href="http://irc.slote.me:9000">Chat IRC</a>
+            |
+            <a href="{{ path('fos_user_security_logout') }}">
+              {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+
+          {% else %}
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+          {% endif %}
         </div>
-        <div class="input">
-          <input type="password" placeholder="Password" id="password" name="_password" class="form-control" required="required"/>
-          <span><i class="fa fa-lock"></i></span>
-        </div>
-        <button type="submit" class="submit" name="_submit"  value="{{ 'security.login.submit'|trans }}"><i class="fa fa-long-arrow-right"></i></button>
 
-      </fieldset>
-
-      <div class="feedback">
-        login successful <br />
-        redirecting...
+        {% for type, messages in app.session.flashbag.all() %}
+          {% for message in messages %}
+            <div class="flash-{{ type }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endfor %}
       </div>
+      <hr class="clear">
+      {% if error %}
+        <div class="alert alert-danger">{{ error|trim('.')|trans({}, 'FOSUserBundle') }}</div>
+      {% endif %}
+    </header>
+    <div class="container" style="margin-top: 25%;">
+      <form class="login" action="{{ path("fos_user_security_check") }}" method="post">
 
-    </form>
+        <fieldset>
+
+          <legend class="legend">Login</legend>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+          <div class="input">
+            <input type="text" placeholder="User" id="username" name="_username" class="form-control" value="{{ last_username }}"
+            required/>
+            <span><i class="fa fa-user"></i></span>
+          </div>
+          <div class="input">
+            <input type="password" placeholder="Password" id="password" name="_password" class="form-control" required="required"/>
+            <span><i class="fa fa-lock"></i></span>
+          </div>
+          <button type="submit" class="submit" name="_submit"  value="{{ 'security.login.submit'|trans }}"><i class="fa fa-long-arrow-right"></i></button>
+
+        </fieldset>
+
+        <div class="feedback">
+          login successful <br />
+          redirecting...
+        </div>
+
+      </form>
+    </div>
+  </div>
   </body>
 </html>

