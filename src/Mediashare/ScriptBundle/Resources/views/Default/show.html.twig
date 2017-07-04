@@ -28,14 +28,6 @@
         </td>
       </tr>
 
-      {% if entity.description | length > 0 %}
-        <tr>
-          <th>Description</th>
-          <td class="errorcode">{{ entity.description }}</td>
-          <th></th>
-          <td></td>
-        </tr>
-      {% endif %}
       {% if entity.payload | length > 0 %}
         <tr>
           <th>Payload</th>
@@ -66,6 +58,12 @@
       </tr>
     </tbody>
   </table>
+  {% if entity.description | length > 0 %}
+  <h3><span class="errorcode">Description</span> Post</h3>
+  <hr class="separateur">
+  <p>{{ entity.description }}</p>
+  <hr class="clear">
+  {% endif %}
   <h3><span class="errorcode">Code</span> File</h3>
   <hr class="separateur">
   <p>{{ contents }}</p>

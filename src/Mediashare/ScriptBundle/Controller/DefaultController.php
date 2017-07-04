@@ -86,19 +86,4 @@ class DefaultController extends Controller
         ));
     }
 
-    /**
-     * Download $id Script.
-     *
-     */
-    public function downloadAction($path, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MediashareScriptBundle:Script')->find($id);
-
-        return $this->render('MediashareScriptBundle:Default:show.html.twig', array(
-            'entity' => $entity,
-        ));
-    }
-
 }

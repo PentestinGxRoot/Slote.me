@@ -140,7 +140,7 @@ class RegistrationController extends ContainerAware
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Security:login.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('MediashareAppBundle:Default:index.html.'.$this->getEngine(), array(
             'user' => $user,
         ));
     }

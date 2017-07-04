@@ -72,7 +72,12 @@
       Edit
     </a>
   {% endif %}
-
+  {% if entity.description | length > 0 %}
+  <h3><span class="errorcode">Description</span> Post</h3>
+  <hr class="separateur">
+  <p>{{ entity.description }}</p>
+  <hr class="clear">
+  {% endif %}
   <h3><span class="errorcode">Code</span> File</h3>
   <hr class="separateur">
   <p>{{ contents }}</p>
