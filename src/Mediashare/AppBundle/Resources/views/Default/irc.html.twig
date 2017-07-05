@@ -1,0 +1,34 @@
+{% extends 'MediashareAppBundle::base.html.twig' %}
+{% block content %}
+<div class="container">
+  {% block menu %}
+          {% include 'MediashareAppBundle::_menu.html.twig' %}
+  {% endblock %}
+  <table>
+    <tbody>
+      <tr>
+        <th><a target="_blank" href="{{ path('mediashare_app_irc')}}"><img width="225px" height="225px" src="{{ asset('images/irc.png')}}" title="Irc Chat" alt="Irc Chat"></a></th>
+      </tr>
+      <tr>
+        <td align="center"><h3>Irc</h3></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th>Port</th>
+      <th>Channel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">irc.slote.me</td>
+      <td>6667</td>
+      <td>#General, #BadOps</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+{% endblock %}

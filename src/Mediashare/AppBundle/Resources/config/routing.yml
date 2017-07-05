@@ -2,6 +2,10 @@ mediashare_app_homepage:
     path:     /
     defaults: { _controller: MediashareAppBundle:Default:index }
 
+mediashare_app_irc:
+    path:     /irc
+    defaults: { _controller: MediashareAppBundle:Default:irc }
+
 mediashare_info:
     resource: "@MediashareAppBundle/Resources/config/routing/info.yml"
     prefix:   /info

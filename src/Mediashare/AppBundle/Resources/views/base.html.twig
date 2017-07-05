@@ -40,7 +40,9 @@
                 |
                 <a href="{{ path('mediashare_app_homepage')}}">Home</a>
                 |
-                <a href="http://irc.slote.me:9000">Chat IRC</a>
+                <a href="{{ path('mediashare_app_irc')}}">Chat IRC</a>
+                |
+                <a href="{{ path('mediashare_app_contact')}}">Contact</a>
                 |
                 <a href="{{ path('fos_user_security_logout') }}">
                   {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}

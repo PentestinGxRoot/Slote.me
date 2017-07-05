@@ -29,6 +29,11 @@ class DefaultController extends Controller
         ));
     }
 
+    public function ircAction()
+    {
+        return $this->render('MediashareAppBundle:Default:irc.html.twig');
+    }
+
     public function infoAction($name)
     {
         return $this->render('MediashareAppBundle:Default:info.html.twig');
@@ -108,7 +113,7 @@ class DefaultController extends Controller
                         ->setContentType('text/html');
                     $this->get('mailer')->send($message);
 
-                    return $this->redirect($this->generateUrl('mediashare_app_thanks'));
+                    return $this->redirect($this->generateUrl('mediashare_homepage'));
                 }
             }
 
