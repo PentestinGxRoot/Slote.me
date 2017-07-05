@@ -34,9 +34,9 @@ class DefaultController extends Controller
         return $this->render('MediashareAppBundle:Default:irc.html.twig');
     }
 
-    public function infoAction($name)
+    public function hackedAction()
     {
-        return $this->render('MediashareAppBundle:Default:info.html.twig');
+        return $this->render('MediashareAppBundle:Default:hacked.html.twig');
     }
 
     public function pageNotFoundAction()
