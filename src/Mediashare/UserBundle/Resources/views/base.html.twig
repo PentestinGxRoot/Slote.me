@@ -54,4 +54,7 @@
 <footer>
     {% block footer %}{% endblock %}
 </footer>
+{% block menu %}
+        {% include 'MediashareAppBundle::_analytics.html.twig' %}
+{% endblock %}
 </html>
