@@ -23,6 +23,7 @@ class DefaultController extends Controller
             array(),
             array('os' => 'ASC')
         );
+
         return $this->render('MediashareAppBundle:Default:index.html.twig', array(
           'script' => $script
         ));
