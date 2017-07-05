@@ -175,6 +175,8 @@ class DefaultController extends Controller
         $finalRoutes = array();
         $routesToAvoid = array(
             'pageNotFound',
+            'mediashare_script_admin',
+            'mediashare_script_script',
             'mediashare_app_sitemap',
             'mediashare_app_sitemapXml',
             'mediashare_app_awsindex',
