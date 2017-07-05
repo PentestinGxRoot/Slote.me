@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}ESPACE D'ADMINISTRATION SERCO POINT-WEB{% endblock %}</title>
+    <title>{% block title %}Administration Slote.me{% endblock %}</title>
     <script type="text/javascript" src="{{ asset('jquery-ui-1.11.4.custom/external/jquery/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('jquery-ui-1.11.4.custom/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('tinymce/js/tinymce/tinymce.min.js') }}"></script>
@@ -74,15 +74,15 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ path("mediashare_admin_homepage") }}"><img class="logo"
-                                                                                           src="{{ asset('logo.png') }}"
+                                                                                           src="{{ asset('images/skull.png') }}"
                                                                                            alt="logo"/></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a target="_blank" href="http://support.mediashare.fr/report" class="dropdown-toggle" ><i
                                 class="fa fa-flag"></i> Report Bug</a>
-                </li>
+                </li> -->
                 <li class="dropdown">
                     {{ render(controller('MediashareAdminBundle:Default:message')) }}
                 </li>
